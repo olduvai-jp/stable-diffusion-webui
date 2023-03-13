@@ -1537,9 +1537,13 @@ def create_ui():
         (img2img_interface, "img2img", "img2img"),
         (extras_interface, "Extras", "extras"),
         (pnginfo_interface, "PNG Info", "pnginfo"),
-        (modelmerger_interface, "Checkpoint Merger", "modelmerger"),
-        (train_interface, "Train", "ti"),
     ]
+
+    if not cmd_opts.hide_modelmerger:
+        interfaces += [(modelmerger_interface, "Checkpoint Merger", "modelmerger")]
+
+    if not cmd_opts.hide_train:
+        interfaces += [(train_interface, "Train", "ti")]
 
     css = ""
 
@@ -1558,10 +1562,12 @@ def create_ui():
         css += css_hide_progressbar
 
     interfaces += script_callbacks.ui_tabs_callback()
-    interfaces += [(settings_interface, "Settings", "settings")]
+    if not cmd_opts.hide_settings:
+        interfaces += [(settings_interface, "Settings", "settings")]
 
     extensions_interface = ui_extensions.create_ui()
-    interfaces += [(extensions_interface, "Extensions", "extensions")]
+    if not cmd_opts.hide_extensions:
+        interfaces += [(extensions_interface, "Extensions", "extensions")]
 
     shared.tab_names = []
     for _interface, label, _ifid in interfaces:

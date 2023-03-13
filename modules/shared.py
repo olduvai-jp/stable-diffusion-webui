@@ -111,7 +111,10 @@ parser.add_argument("--gradio-queue", action='store_true', help="Uses gradio que
 parser.add_argument("--skip-version-check", action='store_true', help="Do not check versions of torch and xformers")
 parser.add_argument("--no-hashing", action='store_true', help="disable sha256 hashing of checkpoints to help loading performance", default=False)
 parser.add_argument("--no-download-sd-model", action='store_true', help="don't download SD1.5 model even if no model is found in --ckpt-dir", default=False)
-
+parser.add_argument("--hide-modelmerger", action='store_true', help="hide model merger tab", default=False)
+parser.add_argument("--hide-train", action='store_true', help="hide train tab", default=False)
+parser.add_argument("--hide-settings", action='store_true', help="hide settings tab", default=False)
+parser.add_argument("--hide-extensions", action='store_true', help="hide extra tab", default=False)
 
 script_loading.preload_extensions(extensions.extensions_dir, parser)
 script_loading.preload_extensions(extensions.extensions_builtin_dir, parser)
